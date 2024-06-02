@@ -1,4 +1,4 @@
-# flutter_internal_recorder
+# flutter_sysaudio_streaming
 
 Record system's internal audio
 

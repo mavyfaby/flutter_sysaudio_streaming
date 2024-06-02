@@ -1,7 +1,7 @@
-name: flutter_internal_recorder
+name: flutter_sysaudio_streaming
 description: "A flutter plugin that streams PCM16BIT format system audio on android devices"
 version: 0.0.1
-repository: https://github.com/mavyfaby/flutter_internal_recorder
+repository: https://github.com/mavyfaby/flutter_sysaudio_streaming
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_webrtc: ^0.10.7
   plugin_platform_interface: ^2.0.2
 
 dev_dependencies:
@@ -36,8 +35,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: me.mavyfaby.flutter_internal_recorder
-        pluginClass: FlutterInternalRecorderPlugin
+        package: me.mavyfaby.flutter_sysaudio_streaming
+        pluginClass: FlutterSysAudioStreamingPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

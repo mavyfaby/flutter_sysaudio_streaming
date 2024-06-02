@@ -8,7 +8,7 @@
 
     <application>
         <service
-            android:name=".FlutterInternalRecorderService"
+            android:name=".FlutterSysAudioStreamingService"
             android:foregroundServiceType="mediaProjection" />
     </application>
 </manifest>

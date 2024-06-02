@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="flutter_internal_recorder_example"
+        android:label="flutter_sysaudio_streaming_example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

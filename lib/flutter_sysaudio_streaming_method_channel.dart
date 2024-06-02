@@ -3,19 +3,19 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'flutter_internal_recorder_platform_interface.dart';
+import 'flutter_sysaudio_streaming_platform_interface.dart';
 
-/// An implementation of [FlutterInternalRecorderPlatform] that uses method channels.
-class MethodChannelFlutterInternalRecorder extends FlutterInternalRecorderPlatform {
+/// An implementation of [FlutterSysAudioStreamingPlatform] that uses method channels.
+class MethodChannelFlutterSysAudioStreaming extends FlutterSysAudioStreamingPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('flutter_internal_recorder');
+  final methodChannel = const MethodChannel('flutter_sysaudio_streaming');
 
   /// Stream controller to manage the audio data stream.
   @override
   StreamController<List<int>>? stream;
 
-  MethodChannelFlutterInternalRecorder() {
+  MethodChannelFlutterSysAudioStreaming() {
     methodChannel.setMethodCallHandler((call) async {
       if (call.method == 'onBroadcast') {
         final data = call.arguments as List<int>;

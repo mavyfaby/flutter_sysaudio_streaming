@@ -1,4 +1,4 @@
-package me.mavyfaby.flutter_internal_recorder_example;
+package me.mavyfaby.flutter_sysaudio_streaming_example;
 
 import io.flutter.embedding.android.FlutterActivity;
 

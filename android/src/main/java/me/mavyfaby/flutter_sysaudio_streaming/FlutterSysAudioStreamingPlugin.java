@@ -1,4 +1,4 @@
-package me.mavyfaby.flutter_internal_recorder;
+package me.mavyfaby.flutter_sysaudio_streaming;
 
 import android.Manifest;
 import android.app.Activity;
@@ -35,12 +35,12 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 
 /**
- * FlutterInternalRecorderPlugin
+ * FlutterSysAudioStreamingPlugin
  * @author mavyfaby (Maverick Fabroa)
  * @references https://developer.android.com/media/platform/av-capture
  */
-public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener, PluginRegistry.RequestPermissionsResultListener {
-  private final String TAG = "FlutterInternalRecorderPlugin";
+public class FlutterSysAudioStreamingPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.ActivityResultListener, PluginRegistry.RequestPermissionsResultListener {
+  private final String TAG = "FlutterSysAudioStreamingPlugin";
 
   private MethodChannel channel;
   private Context context;
@@ -64,7 +64,7 @@ public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallH
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     // Set up MethodChannel
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_internal_recorder");
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_sysaudio_streaming");
     channel.setMethodCallHandler(this);
     // Get native application context
     context = flutterPluginBinding.getApplicationContext();
@@ -78,7 +78,7 @@ public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallH
     binding.addActivityResultListener(this);
     binding.addRequestPermissionsResultListener(this);
     // Register stream receiver
-    context.registerReceiver(audioStreamReceiver(), new IntentFilter(FlutterInternalRecorderService.AUDIO_CHUNK_ID));
+    context.registerReceiver(audioStreamReceiver(), new IntentFilter(FlutterSysAudioStreamingService.AUDIO_CHUNK_ID));
   }
 
   @Override
@@ -142,7 +142,7 @@ public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallH
       // If calling isStreaming
       case "isStreaming":
         // Return true if currently recording
-        result.success(FlutterInternalRecorderService.isStreaming);
+        result.success(FlutterSysAudioStreamingService.isStreaming);
         break;
 
       default:
@@ -174,9 +174,9 @@ public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallH
     // Log stop streaming
     Log.d(TAG, "Stop streaming!");
 
-    // Initialize FlutterInternalRecorderService intent with STREAM_STOP
-    Intent intent = new Intent(context, FlutterInternalRecorderService.class);
-    intent.setAction(FlutterInternalRecorderService.STREAM_STOP);
+    // Initialize FlutterSysAudioStreamingService intent with STREAM_STOP
+    Intent intent = new Intent(context, FlutterSysAudioStreamingService.class);
+    intent.setAction(FlutterSysAudioStreamingService.STREAM_STOP);
 
     // Start foreground service
     activity.startService(intent);
@@ -191,7 +191,7 @@ public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallH
       @Override
       public void onReceive(Context context, Intent intent) {
         // Get audio data
-        byte[] data = intent.getByteArrayExtra(FlutterInternalRecorderService.AUDIO_CHUNK);
+        byte[] data = intent.getByteArrayExtra(FlutterSysAudioStreamingService.AUDIO_CHUNK);
 
         // Check if data is not null
         if (data != null) {
@@ -255,14 +255,14 @@ public class FlutterInternalRecorderPlugin implements FlutterPlugin, MethodCallH
     if (requestCode == MEDIA_PROJECTION_REQUEST_CODE) {
     // Check if resultCode is Activity.RESULT_OK
       if (resultCode == Activity.RESULT_OK) {
-        // Initialize FlutterInternalRecorderService intent
-        Intent intent = new Intent(context, FlutterInternalRecorderService.class);
+        // Initialize FlutterSysAudioStreamingService intent
+        Intent intent = new Intent(context, FlutterSysAudioStreamingService.class);
 
         // Set intent action to STREAM_START
-        intent.setAction(FlutterInternalRecorderService.STREAM_START);
-        intent.putExtra(FlutterInternalRecorderService.EXTRA_BUFFER_SIZE, bufferSize);
-        intent.putExtra(FlutterInternalRecorderService.EXTRA_SAMPLE_RATE, sampleRate);
-        intent.putExtra(FlutterInternalRecorderService.EXTRA_RESULT_DATA, data);
+        intent.setAction(FlutterSysAudioStreamingService.STREAM_START);
+        intent.putExtra(FlutterSysAudioStreamingService.EXTRA_BUFFER_SIZE, bufferSize);
+        intent.putExtra(FlutterSysAudioStreamingService.EXTRA_SAMPLE_RATE, sampleRate);
+        intent.putExtra(FlutterSysAudioStreamingService.EXTRA_RESULT_DATA, data);
 
         // Start foreground service in a new thread
         new Thread(() -> {

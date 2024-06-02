@@ -1,4 +1,4 @@
-package me.mavyfaby.flutter_internal_recorder;
+package me.mavyfaby.flutter_sysaudio_streaming;
 
 import android.app.Activity;
 import android.app.NotificationChannel;
@@ -29,12 +29,12 @@ import io.flutter.Log;
 
 
 /**
- * FlutterInternalRecorderService
+ * FlutterSysAudioStreamingService
  * @author mavyfaby (Maverick Fabroa)
  * @references https://developer.android.com/media/platform/av-capture
  */
-public class FlutterInternalRecorderService extends Service {
-    private static final String TAG = "FlutterInternalRecorderService";
+public class FlutterSysAudioStreamingService extends Service {
+    private static final String TAG = "FlutterSysAudioStreamingService";
 
     private MediaProjectionManager mediaProjectionManager;
     private MediaProjection mediaProjection;
@@ -44,12 +44,12 @@ public class FlutterInternalRecorderService extends Service {
 
     public static boolean isStreaming = false;
 
-    public static final String NOTIFICATION_ID = "FlutterInternalRecorderService:Channel";
-    public static final String STREAM_START = "FlutterInternalRecorderService:START";
-    public static final String STREAM_STOP = "FlutterInternalRecorderService:STOP";
-    public static final String EXTRA_RESULT_DATA = "FlutterInternalRecorderService:Extra:ResultData";
-    public static final String EXTRA_BUFFER_SIZE = "FlutterInternalRecorderService:Extra:BufferSize";
-    public static final String EXTRA_SAMPLE_RATE = "FlutterInternalRecorderService:Extra:SampleRate";
+    public static final String NOTIFICATION_ID = "FlutterSysAudioStreamingService:Channel";
+    public static final String STREAM_START = "FlutterSysAudioStreamingService:START";
+    public static final String STREAM_STOP = "FlutterSysAudioStreamingService:STOP";
+    public static final String EXTRA_RESULT_DATA = "FlutterSysAudioStreamingService:Extra:ResultData";
+    public static final String EXTRA_BUFFER_SIZE = "FlutterSysAudioStreamingService:Extra:BufferSize";
+    public static final String EXTRA_SAMPLE_RATE = "FlutterSysAudioStreamingService:Extra:SampleRate";
     public static final String AUDIO_CHUNK = "AUDIO_CHUNK";
     public static final String AUDIO_CHUNK_ID = "AUDIO_CHUNK_ID";
 

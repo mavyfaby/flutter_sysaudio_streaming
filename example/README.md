@@ -1,6 +1,6 @@
-# flutter_internal_recorder_example
+# flutter_sysaudio_streaming_example
 
-Demonstrates how to use the flutter_internal_recorder plugin.
+Demonstrates how to use the flutter_sysaudio_streaming plugin.
 
 ## Getting Started
 

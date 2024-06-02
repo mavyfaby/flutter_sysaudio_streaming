@@ -1,25 +1,25 @@
 import 'dart:async';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'flutter_internal_recorder_method_channel.dart';
+import 'flutter_sysaudio_streaming_method_channel.dart';
 
-abstract class FlutterInternalRecorderPlatform extends PlatformInterface {
-  /// Constructs a FlutterInternalRecorderPlatform.
-  FlutterInternalRecorderPlatform() : super(token: _token);
+abstract class FlutterSysAudioStreamingPlatform extends PlatformInterface {
+  /// Constructs a FlutterSysAudioStreamingPlatform.
+  FlutterSysAudioStreamingPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static FlutterInternalRecorderPlatform _instance = MethodChannelFlutterInternalRecorder();
+  static FlutterSysAudioStreamingPlatform _instance = MethodChannelFlutterSysAudioStreaming();
 
-  /// The default instance of [FlutterInternalRecorderPlatform] to use.
+  /// The default instance of [FlutterSysAudioStreamingPlatform] to use.
   ///
-  /// Defaults to [MethodChannelFlutterInternalRecorder].
-  static FlutterInternalRecorderPlatform get instance => _instance;
+  /// Defaults to [MethodChannelFlutterSysAudioStreaming].
+  static FlutterSysAudioStreamingPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [FlutterInternalRecorderPlatform] when
+  /// platform-specific class that extends [FlutterSysAudioStreamingPlatform] when
   /// they register themselves.
-  static set instance(FlutterInternalRecorderPlatform instance) {
+  static set instance(FlutterSysAudioStreamingPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }

@@ -1,4 +1,4 @@
-group = "me.mavyfaby.flutter_internal_recorder"
+group = "me.mavyfaby.flutter_sysaudio_streaming"
 version = "1.0"
 
 buildscript {
@@ -23,7 +23,7 @@ apply plugin: "com.android.library"
 
 android {
     if (project.android.hasProperty("namespace")) {
-        namespace = "me.mavyfaby.flutter_internal_recorder"
+        namespace = "me.mavyfaby.flutter_sysaudio_streaming"
     }
 
     compileSdk = 34

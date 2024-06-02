@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_internal_recorder/flutter_internal_recorder.dart';
+import 'package:flutter_sysaudio_streaming/flutter_sysaudio_streaming.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
 
-    FlutterInternalRecorder.isStreaming().then((value) {
+    FlutterSysAudioStreaming.isStreaming().then((value) {
       setState(() {
         _isStreaming = value ?? false;
       });
@@ -42,11 +42,11 @@ class _MyAppState extends State<MyApp> {
             children: [
               FilledButton(
                 onPressed: _isStreaming ? null : () async {
-                  final result = await FlutterInternalRecorder.startStreaming();
+                  final result = await FlutterSysAudioStreaming.startStreaming();
                   log("START: $result");
           
                   if (result != null && result) {
-                    FlutterInternalRecorder.stream!.listen((data) {
+                    FlutterSysAudioStreaming.stream!.listen((data) {
                       log("DATA: ${data.length}");
                     });
                   }
@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
               const SizedBox(width: 16),
               FilledButton.tonal(
                 onPressed: !_isStreaming ? null : () async {
-                  final result = await FlutterInternalRecorder.stopStreaming();
+                  final result = await FlutterSysAudioStreaming.stopStreaming();
                   log("STOP: $result");
           
                   setState(() {
