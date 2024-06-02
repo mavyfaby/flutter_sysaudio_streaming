@@ -1,7 +1,7 @@
 name: flutter_internal_recorder
-description: "Record system's internal audio"
+description: "A flutter plugin that streams PCM16BIT format system audio on android devices"
 version: 0.0.1
-homepage:
+repository: https://github.com/mavyfaby/flutter_internal_recorder
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
